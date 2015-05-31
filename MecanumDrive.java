@@ -1,7 +1,6 @@
 //mecanum drive class
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
 
 public class MecanumDrive {
 	//drive speed modifiers
