@@ -25,6 +25,10 @@ public class MecanumDrive {
 		mDrive(x*scale, y*scale, rotate*scale);
 	}
 	
+	public void driveAtSpeed(double x, double y, double rotate, double speed){
+		mDrive(x*speed, y*speed, rotate*speed);
+	}
+	
 	//to be used with directional pad control
 	public void polDrive(int angle) {
 		double scale = updateSpeed();
@@ -109,6 +113,7 @@ public class MecanumDrive {
 	public void setSpeed(int index) {
 		speedIndex = (index > 3? 3 : index < 0? 0 : index);
 	}
+	
 	
 	//returns the current speed
 	public double getSpeed() {
