@@ -1,8 +1,9 @@
 //mecanum drive class
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDOutput;
 
-public class MecanumDrive {
+public class MecanumDrive implements PIDOutput{
 	//drive speed modifiers
 	private double[] speedScale = {.25, .5, .75, 1};
 	private int speedIndex;
@@ -27,6 +28,10 @@ public class MecanumDrive {
 	
 	public void driveAtSpeed(double x, double y, double rotate, double speed){
 		mDrive(x*speed, y*speed, rotate*speed);
+	}
+	
+	public void pidWrite(double output){
+		driveAtSpeed(output);
 	}
 	
 	//to be used with directional pad control
