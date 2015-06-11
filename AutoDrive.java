@@ -4,14 +4,18 @@ import org.usfirst.frc.team4541.driveSystems.MecanumDrive;
 public class AutoDrive {
 	MecanumDrive drive;
 	PIDController pid;
-	public AutoDrive(MecanumDrive d, PIDController p){
+	LIDAR lidar;
+	public AutoDrive(MecanumDrive d, PIDController p, LIDAR l){
 		drive = d;
 		pid = p;
+		lidar = l;
 	}
 	
 	public void pidDrive(double distance, double minIn, double maxIn){
 		pid.setInputRange(minIn, maxIn);
 		pid.setSetpoint(distance);
+		//not sure how to address private inner classes in nested classes
+		lidar.run();
 		pid.run();
 	}
 	
