@@ -17,9 +17,7 @@ public class LIDAR implements PIDSource{
 	
 	public LIDAR(Port port) {
 		i2c = new I2C(port, LIDAR_ADDR);
-		
 		distance = new byte[2];
- 
 		task = new LIDARUpdater();
 		updater = new java.util.Timer();
 	}
