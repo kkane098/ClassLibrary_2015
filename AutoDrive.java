@@ -17,6 +17,13 @@ public class AutoDrive {
 		pid.setSetpoint(distance);
 		lidar.start();
 		pid.enable();
+		while(1==1){
+			if(pid.get <= .05){
+				pid.disable;
+				break;
+			}
+				
+		}
 		lidar.stop();
 	}
 	
