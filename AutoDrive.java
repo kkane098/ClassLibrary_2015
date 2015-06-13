@@ -5,6 +5,7 @@ public class AutoDrive {
 	MecanumDrive drive;
 	PIDController pid;
 	LIDAR lidar;
+	PIDTask task;
 	public AutoDrive(MecanumDrive d, PIDController p, LIDAR l){
 		drive = d;
 		pid = p;
@@ -14,9 +15,9 @@ public class AutoDrive {
 	public void pidDrive(double distance, double minIn, double maxIn){
 		pid.setInputRange(minIn, maxIn);
 		pid.setSetpoint(distance);
-		//not sure how to address private inner classes in nested classes
-		lidar.run();
-		pid.run();
+		lidar.start();
+		pid.enable();
+		lidar.stop();
 	}
 	
 	//drives forward at quarter speed
