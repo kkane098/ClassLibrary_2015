@@ -18,11 +18,10 @@ public class AutoDrive {
 		lidar.start();
 		pid.enable();
 		while(1==1){
-			if(pid.get <= .05){
-				pid.disable;
+			if((pid.get() <= .05 && pid.get() >= 0) || (pid.get() >= -.05 && pid.get() <= 0)){
+				pid.disable();
 				break;
 			}
-				
 		}
 		lidar.stop();
 	}
