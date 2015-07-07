@@ -31,7 +31,7 @@ public class MecanumDrive implements PIDOutput{
 	}
 	
 	public void pidWrite(double output){
-		driveAtSpeed(output);
+		driveAtSpeed(1,0,0,output);
 	}
 	
 	//to be used with directional pad control
