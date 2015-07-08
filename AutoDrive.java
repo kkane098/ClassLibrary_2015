@@ -1,11 +1,10 @@
 //autonomous drive class
-import org.usfirst.frc.team4541.driveSystems.MecanumDrive;
+import edu.wpi.first.wpilibj.PIDController;
 
 public class AutoDrive {
 	MecanumDrive drive;
 	PIDController pid;
 	LIDAR lidar;
-	PIDTask task;
 	public AutoDrive(MecanumDrive d, PIDController p, LIDAR l){
 		drive = d;
 		pid = p;
