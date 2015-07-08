@@ -28,13 +28,13 @@ public class AutoDrive {
 	//drives forward at quarter speed
 	public void forwardDrive(){
 		drive.setSpeed(0);
-		drive.drive(0, -1, 0);
+		drive.drive(0, 1, 0);
 	}
 	
 	//drives backward at quarter speed
 	public void backwardDrive(){
 		drive.setSpeed(0);
-		drive.drive(0, 1, 0);
+		drive.drive(0, -1, 0);
 	}
 	
 	//drives left at quarter speed
