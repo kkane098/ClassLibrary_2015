@@ -1,8 +1,11 @@
 //mecanum drive class
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
+import com.kauailabs.navx.frc.AHRS;
 
 public class MecanumDrive implements PIDOutput{
 	//drive speed modifiers
@@ -82,6 +85,23 @@ public class MecanumDrive implements PIDOutput{
 		t2.set(-rLeftSpeed);
 		t3.set(fRightSpeed);
 		t4.set(rRightSpeed);
+	}
+	
+	public void rotateToAngle(int angle){
+		static final double kP = 0.03;
+		static final double kI = 0.00;
+		static final double kD = 0.00;
+		static final double kF = 0.00;
+		static final double kToleranceDegrees = 2.0f;
+		PIDController turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
+		AHRS ahrs = new AHRS(SPI.Port.kMXP);
+		turnController.setInputRange(-180.0f,  180.0f);
+	    turnController.setOutputRange(-1.0, 1.0);
+	    turnController.setAbsoluteTolerance(kToleranceDegrees);
+	    turnController.setContinuous(true);
+	    while(ahrs.getAngle() <= angle){
+	    	driveAtSpeed(0,0,1,turnController.get());
+	    }
 	}
 	
 	//updates the current speed value
