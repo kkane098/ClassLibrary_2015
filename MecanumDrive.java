@@ -97,12 +97,12 @@ public class MecanumDrive implements PIDOutput{
 		AHRS ahrs = new AHRS(SPI.Port.kMXP);
 		turnController.setInputRange(-180.0f,  180.0f);
 		turnController.setSetpoint(angle);
-	    turnController.setOutputRange(-1.0, 1.0);
-	    turnController.setAbsoluteTolerance(kToleranceDegrees);
-	    turnController.setContinuous(true);
-	    while(ahrs.getAngle() <= angle){
-	    	driveAtSpeed(0,0,1,turnController.get());
-	    }
+	    	turnController.setOutputRange(-1.0, 1.0);
+	    	turnController.setAbsoluteTolerance(kToleranceDegrees);
+	    	turnController.setContinuous(true);
+	    	while(ahrs.getAngle() <= angle){
+	    		driveAtSpeed(0,0,1,turnController.get());
+	    	}
 	}
 	
 	//updates the current speed value
