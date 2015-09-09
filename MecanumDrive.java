@@ -87,7 +87,7 @@ public class MecanumDrive implements PIDOutput{
 		t4.set(rRightSpeed);
 	}
 	
-	public void rotateToAngle(int angle){
+	public void rotateToAngle(double angle){
 		static final double kP = 0.03;
 		static final double kI = 0.00;
 		static final double kD = 0.00;
@@ -96,6 +96,7 @@ public class MecanumDrive implements PIDOutput{
 		PIDController turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
 		AHRS ahrs = new AHRS(SPI.Port.kMXP);
 		turnController.setInputRange(-180.0f,  180.0f);
+		turnController.setSetpoint(angle);
 	    turnController.setOutputRange(-1.0, 1.0);
 	    turnController.setAbsoluteTolerance(kToleranceDegrees);
 	    turnController.setContinuous(true);
