@@ -1,5 +1,5 @@
 //motor manipulator class
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.CANTalon;
 
 public class MotorManip{
 	protected CANTalon t1;
