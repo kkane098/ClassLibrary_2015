@@ -10,13 +10,13 @@ public class PneumaticManip {
 	protected DoubleSolenoid dSol;
 	protected String status;
 	
-	public PneumaticManip(Solenoid s) {
-		sol = s;
+	public PneumaticManip(Solenoid sol) {
+		this.sol = sol;
 		status = "reverse";
 	}
 	
-	public PneumaticManip(DoubleSolenoid d) {
-		dSol = d;
+	public PneumaticManip(DoubleSolenoid dSol) {
+		this.dSol = dSol;
 		status = "reverse";
 	}
 	
