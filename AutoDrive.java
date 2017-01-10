@@ -4,8 +4,8 @@ import org.usfirst.frc.team4541.driveSystems.MecanumDrive;
 public class AutoDrive {
 	MecanumDrive drive;
 	
-	public AutoDrive(MecanumDrive d) {
-		drive = d;
+	public AutoDrive(MecanumDrive drive) {
+		this.drive = drive;
 	}
 	
 	//drives forward at quarter speed
