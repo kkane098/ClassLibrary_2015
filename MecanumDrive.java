@@ -9,11 +9,11 @@ public class MecanumDrive {
 	//talons must be talon SRX's and must be wired in CAN configuration
 	private CANTalon t1, t2, t3, t4;
 	
-	public MecanumDrive(CANTalon tal1, CANTalon tal2, CANTalon tal3, CANTalon tal4) {
-		t1 = tal1;
-		t2 = tal2;
-		t3 = tal3;
-		t4 = tal4;
+	public MecanumDrive(CANTalon t1, CANTalon t2, CANTalon t3, CANTalon t4) {
+		this.t1 = t1;
+		this.t2 = t2;
+		this.t3 = t3;
+		this.t4 = t4;
 		speedIndex = 2;
 	}
 	
@@ -28,24 +28,25 @@ public class MecanumDrive {
 	//to be used with directional pad control
 	public void polDrive(int angle) {
 		double scale = updateSpeed();
-		if(angle == 0)
+		if(angle == 0){
 			mDrive(0, scale, 0);
-		else if(angle == 45)
+		}else if(angle == 45){
 			mDrive(scale, scale, 0);
-		else if(angle == 90)
+		}else if(angle == 90){
 			mDrive(scale, 0, 0);
-		else if(angle == 135)
+		}else if(angle == 135){
 			mDrive(scale, -scale, 0);
-		else if(angle == 180)
+		}else if(angle == 180){
 			mDrive(0, -scale, 0);
-		else if(angle == 225)
+		}else if(angle == 225){
 			mDrive(-scale, -scale, 0);
-		else if(angle == 270)
+		}else if(angle == 270){
 			mDrive(-scale, 0, 0);
-		else if(angle == 315)
+		}else if(angle == 315){
 			mDrive(-scale, scale, 0);
-		else
+		}else{
 			mDrive(0, 0, 0);
+		}
 	}
 	
 	//determines the value to set each motor at based on direction, called within the drive method
@@ -58,9 +59,15 @@ public class MecanumDrive {
 		rLeftSpeed = forward + clockwise - right;
 		rRightSpeed = forward - clockwise + right;
 		max = Math.abs(fLeftSpeed);
-		if (Math.abs(fRightSpeed)>max) max = Math.abs(fRightSpeed);
-		if (Math.abs(rLeftSpeed)>max) max = Math.abs(rLeftSpeed);
-		if (Math.abs(rRightSpeed)>max) max = Math.abs(rRightSpeed);
+		if (Math.abs(fRightSpeed)>max){
+			max = Math.abs(fRightSpeed);
+		}
+		if (Math.abs(rLeftSpeed)>max){
+			max = Math.abs(rLeftSpeed);
+		}
+		if (Math.abs(rRightSpeed)>max){
+			max = Math.abs(rRightSpeed);
+		}
 		if (max>1) {
 			norm = true;
 			fLeftSpeed/=max;
@@ -82,26 +89,31 @@ public class MecanumDrive {
 	//modifies the input of a joystick axis by adding dead zones and squaring the inputs, intended to be used with XBOX controllers or other controllers with many predefined axes
 	public double modStickIn(Joystick j1, int num) {
 		double joyIn = j1.getRawAxis(num);
-		if(joyIn <= .05 && joyIn >= 0)
+		if(joyIn <= .05 && joyIn >= 0){
 			joyIn = 0;
-		else if(joyIn >= -.05 && joyIn <= 0)
+		}else if(joyIn >= -.05 && joyIn <= 0){
 			joyIn = 0;
-		else if(joyIn < 0)
+		}else if(joyIn < 0){
 			joyIn = -Math.pow(joyIn, 2);
-		else
+		}else{
 			joyIn = Math.pow(joyIn, 2);
+		}
 		return joyIn;
 	}
 	
 	//sets the speed modifier to the next predefined value
 	public void speedUp() {
-		if(speedIndex != 3) speedIndex+=1;
+		if(speedIndex != 3){
+			speedIndex+=1;
+		}
 		Timer.delay(.1);
 	}
 	
 	//sets the speed modifier to the previous predefined value
 	public void slowDown() {
-		if(speedIndex != 0) speedIndex-=1;
+		if(speedIndex != 0){
+			speedIndex-=1;
+		}
 		Timer.delay(.1);
 	}
 	
